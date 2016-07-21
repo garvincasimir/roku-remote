@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-*",
+  "name":"RokuDeviceLib.RokuClient",
+  "title":"Roku Client Library",
+  "authors":["Garvin Casimir"],
+  "description": "Cross platform .net roku client library",
+  "packOptions":{
+    "projectUrl":"https://github.com/garvincasimir/roku-remote",
+    "licenseUrl":"https://opensource.org/licenses/MIT",
+    "tags": [
+      "roku",
+      "api",
+      "remote",
+      "client",
+      "library",
+      "cross platform",
+      ".net core"
+    ]
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "System.Xml.XmlSerializer": "4.0.11"
+  },
+  "frameworks": {
+    "netstandard1.3": {
+      "imports": [       
+        "dnxcore50",
+        "portable-net45+win8"]
+    }
+  }
+}
