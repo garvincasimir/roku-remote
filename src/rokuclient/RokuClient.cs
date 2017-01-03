@@ -63,7 +63,7 @@ namespace RokuDeviceLib
                         DeviceResponse = Encoding.ASCII.GetString(result.Buffer);
                     
                         var match = Regex.Match(DeviceResponse,LOCATION_PATTERN,RegexOptions.IgnoreCase);
-                        if(match.Success)
+                        if(match.Success && DeviceResponse.ToLower().Contains("roku"))
                         {
                             var address = match.Groups["address"].Value;
                             //Don't allow device info request to hold up discovering additional devices
