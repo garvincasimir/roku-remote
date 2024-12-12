@@ -7,6 +7,6 @@
     <PackageId>rokuremote</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\rokuclient\rokuclient.csproj" />
+    <ProjectReference Include="..\rokudevicelib\rokudevicelib.csproj" />
   </ItemGroup>
 </Project>

@@ -38,7 +38,7 @@ public class RemoteControl
         {
             if (KeyMap.TryGetValue(k.Key, out string rokuKey))
             {
-                await RokuClient.PressKey(endpoint, rokuKey);
+                await Client.PressKey(endpoint, rokuKey);
             }
             k = Console.ReadKey(true);
         }

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF9F0D72-5656-4F80-98A2-256204843D0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rokuclient", "src\rokuclient\rokuclient.csproj", "{BA0337C1-90CA-4142-A215-790F7427C1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rokuclient", "src\rokudevicelib\rokudevicelib.csproj", "{BA0337C1-90CA-4142-A215-790F7427C1B8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rokuremote", "src\rokuremote\rokuremote.csproj", "{71DED6B3-40D2-46C4-BECF-42F17C41BCD2}"
 EndProject
