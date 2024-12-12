@@ -9,12 +9,7 @@ namespace RokuRemote
     {
         private const string MC_IP = "239.255.255.250";
         private const int MC_Port = 1900;
-        public static void Main(string[] args)
-        {
-            MainAsync().Wait();
-        }
-
-        private static async Task MainAsync()
+        public static async Task Main(string[] args)
         {
             Console.WriteLine("Discoverying Roku Devices Please Wait.....");
             Console.WriteLine();
