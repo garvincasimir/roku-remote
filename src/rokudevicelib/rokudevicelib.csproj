@@ -9,6 +9,5 @@
     <PackageTags>roku;api;remote;client;library;cross platform;.net core</PackageTags>
     <PackageProjectUrl>https://github.com/garvincasimir/roku-remote</PackageProjectUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
   </PropertyGroup>
 </Project>
