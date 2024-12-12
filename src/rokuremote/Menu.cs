@@ -101,7 +101,7 @@ namespace RokuRemote
 
                     break;
                 case 3:
-                    await RemoteControl.Start(selectedDevice.Endpoint);
+                    await RemoteControl.Run(selectedDevice.Endpoint);
                     break;
                 case 4:
                         return 1;
