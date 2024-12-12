@@ -13,7 +13,8 @@ namespace RokuDeviceLib
 {
     public class RokuClient
     {
-        public const string DISCOVER_MESSAGGE = "M-SEARCH * HTTP/1.1\r\n" +
+        private static readonly HttpClient httpClient = new();
+        public const string DISCOVER_MESSAGE = "M-SEARCH * HTTP/1.1\r\n" +
                             "HOST: {0}:{1}\r\n" +
                             "ST:roku:ecp\r\n" +
                             "MAN:\"ssdp:discover\"\r\n";
@@ -29,7 +30,7 @@ namespace RokuDeviceLib
         
             var mcEndpoint = new IPEndPoint(IPAddress.Parse(ip),port);
 
-            var data = string.Format(DISCOVER_MESSAGGE,ip,port);
+            var data = string.Format(DISCOVER_MESSAGE,ip,port);
             
             var discoverBytes = Encoding.UTF8.GetBytes(data);
 
@@ -51,7 +52,7 @@ namespace RokuDeviceLib
                     {
                         operation.Wait(token.Token); //Wait for result until cancelled
                     }
-                    catch(Exception ex)
+                    catch (Exception)
                     {   
                         //We either have no devices or we didn't get any additional devices
                         //Not sure where to log this but can't display to user
@@ -90,9 +91,8 @@ namespace RokuDeviceLib
         //Get additional device info
         public static async Task<RokuDevice> ReadDevice(string endpoint)
         {
-            var client = new HttpClient();
             var requestUrl = endpoint + "query/device-info";
-            var result = await client.GetStreamAsync(requestUrl);
+            var result = await httpClient.GetStreamAsync(requestUrl);
 
             var serializer = new XmlSerializer(typeof(RokuDevice));
             var device = (RokuDevice)serializer.Deserialize(result);
@@ -104,9 +104,8 @@ namespace RokuDeviceLib
         //Get a list of apps installed on a device
         public static async Task<IEnumerable<RokuApp>> ListDeviceApps(string endpoint)
         {
-            var client = new HttpClient();
             var requestUrl = endpoint + "query/apps";
-            var result = await client.GetStreamAsync(requestUrl);
+            var result = await httpClient.GetStreamAsync(requestUrl);
          
             var serializer = new XmlSerializer(typeof(DeviceAppWrapper));
             var wrapper = (DeviceAppWrapper)serializer.Deserialize(result);
@@ -117,9 +116,8 @@ namespace RokuDeviceLib
         //Get the current running app
         public static async Task<RokuActiveApp> GetCurrentApp(string endpoint)
         {
-            var client = new HttpClient();
             var requestUrl = endpoint + "query/active-app";
-            var result = await client.GetStreamAsync(requestUrl);
+            var result = await httpClient.GetStreamAsync(requestUrl);
          
             var serializer = new XmlSerializer(typeof(RokuActiveApp));
             var activeApp = (RokuActiveApp)serializer.Deserialize(result);
@@ -130,20 +128,16 @@ namespace RokuDeviceLib
         //Launch an app with the app id returned from the app listing
         public static async Task LaunchApp(string endpoint,string id)
         {
-            var client = new HttpClient();
             var requestUrl = string.Format(endpoint + "launch/{0}",id);
-            var result = await client.PostAsync(requestUrl,null);
-
+            var result = await httpClient.PostAsync(requestUrl,null);
         }
 
        //Emulate the roku remote by sending a key command
        //Reference here: https://sdkdocs.roku.com/display/sdkdoc/External+Control+Guide#ExternalControlGuide-KeypressKeyValues
        public static async Task PressKey(string endpoint,string key)
         {
-            var client = new HttpClient();
             var requestUrl = string.Format(endpoint + "keypress/{0}",key);
-            var result = await client.PostAsync(requestUrl,null);
-
+            var result = await httpClient.PostAsync(requestUrl,null);
         }
 
         
