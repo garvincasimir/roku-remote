@@ -134,7 +134,7 @@ namespace RokuRemote
            //I know I know what if your app is called q
           if(appId != "q")
           {
-            await RokuClient.LaunchApp(endpoint,appId);
+            await RokuClient.LaunchApp(endpoint, appId);
           }
 
          }
